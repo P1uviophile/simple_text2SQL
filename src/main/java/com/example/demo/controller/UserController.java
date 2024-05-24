@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.service.UserService;
+import com.example.demo.utils.TokenUtil;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,8 @@ public class UserController {
 
     @Resource
     private UserService userService;
+    @Autowired
+    TokenUtil tokenUtil;
 
     @PostMapping("login")
     public ResponseEntity<?> userLogin(@RequestParam("uname") String name, @RequestParam("password") String password) {
@@ -32,6 +35,8 @@ public class UserController {
                 response.put("code", "0");
                 response.put("msg", "登录成功");
 
+                //登录成功后生成token并发送
+                response.put("token", tokenUtil.getToken(name,"user"));
                 // 可以添加用户信息或其他数据
                 // response.put("data", someUserData);
                 return ResponseEntity.ok(response);

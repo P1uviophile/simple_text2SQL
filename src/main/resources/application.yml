@@ -11,3 +11,11 @@ spring:
 # 设置端口号
 server:
   port: 8081
+
+# token
+token:
+  privateKey: 'fdasfgdsagaxgsregdfdjyghjfhebfdgwe45ygrfbsdfshfdsag'
+  # token生成时间超过yangToken变oldToken 访问刷新
+  yangToken: 10000000
+  # token过期时长 一秒=1000
+  oldToken: 30000000
