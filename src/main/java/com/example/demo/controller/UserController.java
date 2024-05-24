@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.service.UserService;
 import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,7 @@ public class UserController {
                 Map<String, Object> response = new HashMap<>();
                 response.put("code", "0");
                 response.put("msg", "登录成功");
+
                 // 可以添加用户信息或其他数据
                 // response.put("data", someUserData);
                 return ResponseEntity.ok(response);
@@ -45,7 +47,7 @@ public class UserController {
             Map<String, Object> response = new HashMap<>();
             response.put("code", "2");
             response.put("msg", "用户名不存在");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
         }
     }
 
@@ -66,13 +68,13 @@ public class UserController {
                 response.put("code", "0");
                 response.put("msg", "注册成功!");
                 System.out.println(response.entrySet());
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+                return ResponseEntity.status(HttpStatus.CREATED).body(response);
             }catch (Exception e){
                 System.out.println("用户注册发生未知错误");
                 Map<String, Object> response = new HashMap<>();
                 response.put("code", "456");
                 response.put("msg", "用户注册发生未知错误");
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+                return ResponseEntity.status(HttpStatus.CREATED).body(response);
             }
         }
     }
