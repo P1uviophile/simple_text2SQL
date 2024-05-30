@@ -3,14 +3,19 @@ spring:
     name: demo
   datasource:
     driver-class-name: org.sqlite.JDBC
-    # 开发用绝对路径
-    # url: jdbc:sqlite::resource:db/geo.db
     # 上线用相对路径
+    # url: jdbc:sqlite::resource:db/geo.db
+    # 开发用绝对路径
     url: jdbc:sqlite:D:\code\java\ing\demo\src\main\resources\db\geo.db
 
 # 设置端口号
 server:
   port: 8081
+
+# 关闭自动驼峰命名规则映射
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
 
 # token
 token:

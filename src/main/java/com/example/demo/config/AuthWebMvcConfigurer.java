@@ -12,7 +12,7 @@ public class AuthWebMvcConfigurer implements WebMvcConfigurer {
     AuthHandlerInterceptor authHandlerInterceptor;
 
     /**
-     * 给除了 /login 的接口都配置拦截器,拦截转向到 authHandlerInterceptor
+     * 给除了 /user/* 的接口都配置拦截器,拦截转向到 authHandlerInterceptor
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

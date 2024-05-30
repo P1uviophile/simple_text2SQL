@@ -32,6 +32,7 @@ public class AuthHandlerInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
         log.info("=======进入拦截器========");
+        log.info(httpServletRequest.getPathInfo());
         // 如果不是映射到方法直接通过,可以访问资源.
         if (!(object instanceof HandlerMethod)) {
             return true;
