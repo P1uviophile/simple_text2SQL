@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,9 +16,9 @@ import java.util.Map;
 @SpringBootApplication
 //public class DemoApplication implements CommandLineRunner {
 public class DemoApplication{
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
