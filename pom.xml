@@ -81,5 +81,5 @@
             </plugin>
         </plugins>
     </build>
-
+    <packaging>jar</packaging>
 </project>
