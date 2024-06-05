@@ -55,7 +55,7 @@ public class text2sqlImpl implements text2sql {
                 JSONObject jsonObject = new JSONObject(result.toString());
                 // 从JSONObject中获取sql字段的值
                 sql = jsonObject.getString("sql");
-                System.out.println(sql);
+                //System.out.println(sql);
                 return sql;
             }else{return null;}
         } catch (Exception e) {
@@ -72,5 +72,10 @@ public class text2sqlImpl implements text2sql {
         String sql = sendPost(API,input);
         return jdbcTemplate.queryForList(sql);
         //return jdbcTemplate.queryForList("SELECT * FROM scenic_area");
+    }
+
+    public String textNot2Sql(String input){
+        String API = "http://127.0.0.1:8000";
+        return sendPost(API,input);
     }
 }

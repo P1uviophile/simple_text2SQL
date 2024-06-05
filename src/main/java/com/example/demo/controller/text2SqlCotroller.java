@@ -26,11 +26,25 @@ public class text2SqlCotroller {
 
     @PostMapping("text2Sql")
     public ComResponse<List<Map<String, Object>>> text2Sql(@RequestParam("text") String text){
-        System.out.println("get");
         ComResponse<List<Map<String, Object>>> objComResponse = new ComResponse<>();
         try{
             List<Map<String, Object>> list;
             list = text2sql.text2dict(text,jdbcTemplate);
+            objComResponse.setData(list);
+            return objComResponse;
+        }catch (Exception e){
+            objComResponse.setCode(500);
+            objComResponse.setMsg("未知错误");
+            return objComResponse;
+        }
+    }
+
+    @PostMapping("textNot2Sql")
+    public ComResponse<String> textNot2Sql(@RequestParam("text") String text){
+        ComResponse<String> objComResponse = new ComResponse<>();
+        try{
+            String list;
+            list = text2sql.textNot2Sql(text);
             objComResponse.setData(list);
             return objComResponse;
         }catch (Exception e){
