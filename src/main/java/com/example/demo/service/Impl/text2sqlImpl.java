@@ -68,14 +68,14 @@ public class text2sqlImpl implements text2sql {
 
     @Override
     public List<Map<String, Object>> text2dict(String input,JdbcTemplate jdbcTemplate){
-        String API = "https://u301332-87e4-379a512d.westb.seetacloud.com:8443/api/generate_sql";
+        String API = "https://u301332-87e4-379a512d.westb.seetacloud.com:8443/api/sql";
         String sql = sendPost(API,input);
         return jdbcTemplate.queryForList(sql);
         //return jdbcTemplate.queryForList("SELECT * FROM scenic_area");
     }
 
     public String textNot2Sql(String input){
-        String API = "http://127.0.0.1:8000";
+        String API = "https://u301332-87e4-379a512d.westb.seetacloud.com:8443/api/text";
         return sendPost(API,input);
     }
 }
