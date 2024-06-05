@@ -71,5 +71,6 @@ public class text2sqlImpl implements text2sql {
         String API = "https://u301332-87e4-379a512d.westb.seetacloud.com:8443/api/generate_sql";
         String sql = sendPost(API,input);
         return jdbcTemplate.queryForList(sql);
+        //return jdbcTemplate.queryForList("SELECT * FROM scenic_area");
     }
 }
