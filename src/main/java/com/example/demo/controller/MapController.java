@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.commonResponse.ComResponse;
 import com.example.demo.entity.Hotel;
 import com.example.demo.entity.Province;
@@ -11,10 +13,10 @@ import com.example.demo.mapper.Scenic_areaMapper;
 import com.example.demo.mapper.SpecialtyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -33,11 +35,13 @@ public class MapController {
     @Autowired
     ProvinceMapper provinceMapper;
 
-    @GetMapping("hotel")
-    public ComResponse<List<Hotel>> getHotel(){
+    @PostMapping("hotel")
+    public ComResponse<List<Hotel>> getHotel(@RequestParam("searchQuery") String searchQuery){
         ComResponse<List<Hotel>> objComResponse = new ComResponse<>();
         try{
-            List<Hotel> hotels = hotelMapper.selectList(null);
+            QueryWrapper<Hotel> wrapper = new QueryWrapper<>();
+            wrapper.like("hotel_name", searchQuery).or().like("hotel_ads", searchQuery).or().like("province", searchQuery).or().like("city", searchQuery).or().like("county", searchQuery);
+            List<Hotel> hotels = hotelMapper.selectList(wrapper);
             objComResponse.setData(hotels);
             return objComResponse;
         }catch (Exception e){
@@ -47,11 +51,13 @@ public class MapController {
         }
     }
 
-    @GetMapping("specialty")
-    public ComResponse<List<Specialty>> getSpecialty(){
+    @PostMapping("specialty")
+    public ComResponse<List<Specialty>> getSpecialty(@RequestParam("searchQuery") String searchQuery){
         ComResponse<List<Specialty>> objComResponse = new ComResponse<>();
         try{
-            List<Specialty> specialty = specialtyMapper.selectList(null);
+            QueryWrapper<Specialty> wrapper = new QueryWrapper<>();
+            wrapper.like("specialty_name", searchQuery).or().like("province_area", searchQuery).or().like("province", searchQuery).or().like("city", searchQuery).or().like("county", searchQuery);
+            List<Specialty> specialty = specialtyMapper.selectList(wrapper);
             objComResponse.setData(specialty);
             return objComResponse;
         }catch (Exception e){
@@ -61,11 +67,13 @@ public class MapController {
         }
     }
 
-    @GetMapping("scenic_area")
-    public ComResponse<List<Scenic_area>> getScenic_area(){
+    @PostMapping("scenic_area")
+    public ComResponse<List<Scenic_area>> getScenic_area(@RequestParam("searchQuery") String searchQuery){
         ComResponse<List<Scenic_area>> objComResponse = new ComResponse<>();
         try{
-            List<Scenic_area> scenic_areas = scenic_area.selectList(null);
+            QueryWrapper<Scenic_area> wrapper = new QueryWrapper<>();
+            wrapper.like("view_name", searchQuery).or().like("level", searchQuery).or().like("province", searchQuery).or().like("city", searchQuery).or().like("county", searchQuery);
+            List<Scenic_area> scenic_areas = scenic_area.selectList(wrapper);
             objComResponse.setData(scenic_areas);
             return objComResponse;
         }catch (Exception e){
@@ -75,8 +83,8 @@ public class MapController {
         }
     }
 
-    @GetMapping("province")
-    public ComResponse<List<Province>> getProvince(){
+    @PostMapping("province")
+    public ComResponse<List<Province>> getProvince(@RequestParam("searchQuery") String searchQuery){
         ComResponse<List<Province>> objComResponse = new ComResponse<>();
         try{
             List<Province> provinces = provinceMapper.selectList(null);
