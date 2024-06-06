@@ -4,9 +4,9 @@ spring:
   datasource:
     driver-class-name: org.sqlite.JDBC
     # 上线用相对路径
-    # url: jdbc:sqlite::resource:db/geo.db
+    url: jdbc:sqlite::resource:db/geo.db
     # 开发用绝对路径
-    url: jdbc:sqlite:D:\code\java\ing\demo\src\main\resources\db\geo.db
+    # url: jdbc:sqlite:D:\code\java\ing\demo\src\main\resources\db\geo.db
 
 # 设置端口号
 server:
