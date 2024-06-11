@@ -33,7 +33,8 @@ public class text2sqlImpl implements text2sql {
             // 设置允许输出
             conn.setDoOutput(true);
             // 构建JSON字符串
-            String jsonInputString = "{\"question\":\""+param+"\"}";
+            JSONObject jsonInputString = new JSONObject();
+            jsonInputString.put("question",param);
             try (OutputStream os = conn.getOutputStream()) {
                 // 使用PrintWriter来写入JSON字符串
                 try (PrintWriter writer = new PrintWriter(os, true)) {
@@ -55,7 +56,6 @@ public class text2sqlImpl implements text2sql {
                 JSONObject jsonObject = new JSONObject(result.toString());
                 // 从JSONObject中获取sql字段的值
                 sql = jsonObject.getString("sql");
-                //System.out.println(sql);
                 return sql;
             }else{return null;}
         } catch (Exception e) {
