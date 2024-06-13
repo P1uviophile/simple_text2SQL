@@ -56,6 +56,7 @@ public class text2sqlImpl implements text2sql {
                 JSONObject jsonObject = new JSONObject(result.toString());
                 // 从JSONObject中获取sql字段的值
                 sql = jsonObject.getString("sql");
+                System.out.println(sql);
                 return sql;
             }else{return null;}
         } catch (Exception e) {
